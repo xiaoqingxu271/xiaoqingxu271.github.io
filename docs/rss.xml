@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>小情绪271的博客</title><link>https://xiaoqingxu271.github.io</link><description>我是小情绪271,一个分享有关java知识的博主</description><copyright>小情绪271的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://img95.699pic.com/photo/40127/0864.gif_wh860.gif</url><title>avatar</title><link>https://xiaoqingxu271.github.io</link></image><lastBuildDate>Mon, 16 Jun 2025 06:43:16 +0000</lastBuildDate><managingEditor>小情绪271的博客</managingEditor><ttl>60</ttl><webMaster>小情绪271的博客</webMaster><item><title>JVM中的垃圾回收算法</title><link>https://xiaoqingxu271.github.io/post/JVM-zhong-de-la-ji-hui-shou-suan-fa.html</link><description>## 一，标记-清除算法
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>小情绪271的博客</title><link>https://xiaoqingxu271.github.io</link><description>我是小情绪271,一个分享有关java知识的博主</description><copyright>小情绪271的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://img95.699pic.com/photo/40127/0864.gif_wh860.gif</url><title>avatar</title><link>https://xiaoqingxu271.github.io</link></image><lastBuildDate>Mon, 16 Jun 2025 07:02:05 +0000</lastBuildDate><managingEditor>小情绪271的博客</managingEditor><ttl>60</ttl><webMaster>小情绪271的博客</webMaster><item><title>JVM中的垃圾回收算法</title><link>https://xiaoqingxu271.github.io/post/JVM-zhong-de-la-ji-hui-shou-suan-fa.html</link><description>## 一，标记-清除算法
 1. 在标记阶段，会将存活的对象进行标记，根据可达性分析算法，从GC Root对象开始通过引用链遍历出所有存活的对象
 2. 在清除阶段，从内存中删除非标记对象
 优点：在标记阶段，为每个存活的对象维护一个标志位，在清除阶段，清除没有标志位的对象
@@ -42,7 +42,12 @@
 3，Miner GC记录存活的对象年龄达到阈值(最大值为15，值与垃圾回收器有关)，对象就得到晋升被放在老年代中
 4，当老年代被对象装满，年轻代的对象也被装满，在往伊甸园区添加对象，会先尝试Miner GC，如果Miner GC后没有对象被回收，
 就会触发Full GC回收，Full GC 会对整个堆的对象进行回收
-5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常。</description><guid isPermaLink="true">https://xiaoqingxu271.github.io/post/JVM-zhong-de-la-ji-hui-shou-suan-fa.html</guid><pubDate>Mon, 16 Jun 2025 06:42:49 +0000</pubDate></item><item><title>ArrayList源码分析</title><link>https://xiaoqingxu271.github.io/post/ArrayList-yuan-ma-fen-xi.html</link><description># ArrayList源码
+5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常
+
+## 五，为什么分代GC要将堆分为年轻代和老年代
+1，可以通过调整年轻代和老年代的大小来适配不同的应用程序，提高内存的利用率和性能
+2，年轻代使用GC算法为复制算法，老年代使用的GC算法为标记-清除算法或者标记-整理算法
+3，分代的设计中只允许对年轻代经行回收，如果能满足对象分配，就不需要执行Full GC，等待时间就会变少。</description><guid isPermaLink="true">https://xiaoqingxu271.github.io/post/JVM-zhong-de-la-ji-hui-shou-suan-fa.html</guid><pubDate>Mon, 16 Jun 2025 06:42:49 +0000</pubDate></item><item><title>ArrayList源码分析</title><link>https://xiaoqingxu271.github.io/post/ArrayList-yuan-ma-fen-xi.html</link><description># ArrayList源码
 ## add源码机制
 ### 1，创建一个测试类
 ![Image](https://github.com/user-attachments/assets/4cb94f17-007e-4bf6-a2cf-fb0eb749f668)

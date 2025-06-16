@@ -53,7 +53,12 @@
 3，Miner GC记录存活的对象年龄达到阈值(最大值为15，值与垃圾回收器有关)，对象就得到晋升被放在老年代中
 4，当老年代被对象装满，年轻代的对象也被装满，在往伊甸园区添加对象，会先尝试Miner GC，如果Miner GC后没有对象被回收，
 就会触发Full GC回收，Full GC 会对整个堆的对象进行回收
-5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常。">
+5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常
+
+## 五，为什么分代GC要将堆分为年轻代和老年代
+1，可以通过调整年轻代和老年代的大小来适配不同的应用程序，提高内存的利用率和性能
+2，年轻代使用GC算法为复制算法，老年代使用的GC算法为标记-清除算法或者标记-整理算法
+3，分代的设计中只允许对年轻代经行回收，如果能满足对象分配，就不需要执行Full GC，等待时间就会变少。">
 <meta property="og:title" content="JVM中的垃圾回收算法">
 <meta property="og:description" content="## 一，标记-清除算法
 1. 在标记阶段，会将存活的对象进行标记，根据可达性分析算法，从GC Root对象开始通过引用链遍历出所有存活的对象
@@ -98,7 +103,12 @@
 3，Miner GC记录存活的对象年龄达到阈值(最大值为15，值与垃圾回收器有关)，对象就得到晋升被放在老年代中
 4，当老年代被对象装满，年轻代的对象也被装满，在往伊甸园区添加对象，会先尝试Miner GC，如果Miner GC后没有对象被回收，
 就会触发Full GC回收，Full GC 会对整个堆的对象进行回收
-5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常。">
+5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常
+
+## 五，为什么分代GC要将堆分为年轻代和老年代
+1，可以通过调整年轻代和老年代的大小来适配不同的应用程序，提高内存的利用率和性能
+2，年轻代使用GC算法为复制算法，老年代使用的GC算法为标记-清除算法或者标记-整理算法
+3，分代的设计中只允许对年轻代经行回收，如果能满足对象分配，就不需要执行Full GC，等待时间就会变少。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xiaoqingxu271.github.io/post/JVM-zhong-de-la-ji-hui-shou-suan-fa.html">
 <meta property="og:image" content="https://img95.699pic.com/photo/40127/0864.gif_wh860.gif">
@@ -203,7 +213,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 3，Miner GC记录存活的对象年龄达到阈值(最大值为15，值与垃圾回收器有关)，对象就得到晋升被放在老年代中<br>
 4，当老年代被对象装满，年轻代的对象也被装满，在往伊甸园区添加对象，会先尝试Miner GC，如果Miner GC后没有对象被回收，<br>
 就会触发Full GC回收，Full GC 会对整个堆的对象进行回收<br>
-5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常</p></div>
+5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常</p>
+<h2>五，为什么分代GC要将堆分为年轻代和老年代</h2>
+<p>1，可以通过调整年轻代和老年代的大小来适配不同的应用程序，提高内存的利用率和性能<br>
+2，年轻代使用GC算法为复制算法，老年代使用的GC算法为标记-清除算法或者标记-整理算法<br>
+3，分代的设计中只允许对年轻代经行回收，如果能满足对象分配，就不需要执行Full GC，等待时间就会变少</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
