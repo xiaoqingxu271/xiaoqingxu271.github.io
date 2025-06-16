@@ -1,5 +1,48 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>小情绪271的博客</title><link>https://xiaoqingxu271.github.io</link><description>我是小情绪271,一个分享有关java知识的博主</description><copyright>小情绪271的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://img95.699pic.com/photo/40127/0864.gif_wh860.gif</url><title>avatar</title><link>https://xiaoqingxu271.github.io</link></image><lastBuildDate>Sun, 15 Jun 2025 08:18:58 +0000</lastBuildDate><managingEditor>小情绪271的博客</managingEditor><ttl>60</ttl><webMaster>小情绪271的博客</webMaster><item><title>ArrayList源码分析</title><link>https://xiaoqingxu271.github.io/post/ArrayList-yuan-ma-fen-xi.html</link><description># ArrayList源码
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>小情绪271的博客</title><link>https://xiaoqingxu271.github.io</link><description>我是小情绪271,一个分享有关java知识的博主</description><copyright>小情绪271的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://img95.699pic.com/photo/40127/0864.gif_wh860.gif</url><title>avatar</title><link>https://xiaoqingxu271.github.io</link></image><lastBuildDate>Mon, 16 Jun 2025 06:43:16 +0000</lastBuildDate><managingEditor>小情绪271的博客</managingEditor><ttl>60</ttl><webMaster>小情绪271的博客</webMaster><item><title>JVM中的垃圾回收算法</title><link>https://xiaoqingxu271.github.io/post/JVM-zhong-de-la-ji-hui-shou-suan-fa.html</link><description>## 一，标记-清除算法
+1. 在标记阶段，会将存活的对象进行标记，根据可达性分析算法，从GC Root对象开始通过引用链遍历出所有存活的对象
+2. 在清除阶段，从内存中删除非标记对象
+优点：在标记阶段，为每个存活的对象维护一个标志位，在清除阶段，清除没有标志位的对象
+缺点： 
+### 1. 内存碎片化
+清除非标记对象后，内存中会出现不连续的内存碎片，可能会造成内存空间过小而无法分配
+### 2. 分配速度慢
+清除非标记对象后，会将空闲的内存空间维护成一个链表，在下一次分配内存空间，就要遍历链表，找到符合的空间大小
+
+## 二，复制算法
+1，将堆内存分成from内存和to内存，对象创建在from内存中
+2，在垃圾回收阶段，将GC Root对象移动到to内存中
+3，将GC Root关联的对象也移动到to内存中
+4，清除from内存，将from和to内存的名称互换
+优点：
+### 1，吞吐量高
+### 2，不会发生碎片化
+缺点：
+### 内存使用效率低：
+每次只使用堆内存空间大小的一半来存储对象 
+
+## 三，标记-整理算法
+1. 在标记阶段，会将存活的对象进行标记，根据可达性分析算法，从GC Root对象开始通过引用链遍历出所有存活的对象
+2. 在清除阶段，从内存中删除非标记对象
+3. 在整理阶段，会将存活的对象移动到堆的一端，将空闲的内存空间连续起来使用
+优点：
+### 1，内存使用率高
+### 不会发生碎片化的问题
+缺点：
+### 2，整理阶段效率不高
+可以使用Two-finger，表格算法，ImmixGC算法来优化这个阶段
+
+## 四，分代GC
+1，分代GC的内存示意图
+![Image](https://github.com/user-attachments/assets/957cf559-ebd4-4478-b499-83ff9c2f7dba)
+2，分代回收时，创建出来的对象，会被放入伊甸园区和from区
+随着对象在Eden中创建的越来越多，如果Eden区被装满，就会触发年轻代GC 称为Miner GC 或者 Young GC
+实质就是通过复制算法，将需要的对象经行回收，不回收的对象放在to区，并且每次Miner GC 之后，都会为存活的对象记录年龄，
+初始值为0，GC后加1
+3，Miner GC记录存活的对象年龄达到阈值(最大值为15，值与垃圾回收器有关)，对象就得到晋升被放在老年代中
+4，当老年代被对象装满，年轻代的对象也被装满，在往伊甸园区添加对象，会先尝试Miner GC，如果Miner GC后没有对象被回收，
+就会触发Full GC回收，Full GC 会对整个堆的对象进行回收
+5，如果Full GC后 仍然无法对老年代的对象回收，就会抛出Out Of Memory异常。</description><guid isPermaLink="true">https://xiaoqingxu271.github.io/post/JVM-zhong-de-la-ji-hui-shou-suan-fa.html</guid><pubDate>Mon, 16 Jun 2025 06:42:49 +0000</pubDate></item><item><title>ArrayList源码分析</title><link>https://xiaoqingxu271.github.io/post/ArrayList-yuan-ma-fen-xi.html</link><description># ArrayList源码
 ## add源码机制
 ### 1，创建一个测试类
 ![Image](https://github.com/user-attachments/assets/4cb94f17-007e-4bf6-a2cf-fb0eb749f668)
