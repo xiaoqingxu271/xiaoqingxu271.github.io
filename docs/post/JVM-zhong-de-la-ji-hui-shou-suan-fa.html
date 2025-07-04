@@ -205,7 +205,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>可以使用Two-finger，表格算法，ImmixGC算法来优化这个阶段</p>
 <h2>四，分代GC</h2>
 <p>1，分代GC的内存示意图<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/957cf559-ebd4-4478-b499-83ff9c2f7dba"><img src="https://github.com/user-attachments/assets/957cf559-ebd4-4478-b499-83ff9c2f7dba" alt="Image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/957cf559-ebd4-4478-b499-83ff9c2f7dba"><img src="https://github.com/user-attachments/assets/957cf559-ebd4-4478-b499-83ff9c2f7dba" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 2，分代回收时，创建出来的对象，会被放入伊甸园区和from区<br>
 随着对象在Eden中创建的越来越多，如果Eden区被装满，就会触发年轻代GC 称为Miner GC 或者 Young GC<br>
 实质就是通过复制算法，将需要的对象经行回收，不回收的对象放在to区，并且每次Miner GC 之后，都会为存活的对象记录年龄，<br>

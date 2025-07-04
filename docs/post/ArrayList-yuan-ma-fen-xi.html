@@ -176,17 +176,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-body" id="postBody"><h1>ArrayList源码</h1>
 <h2>add源码机制</h2>
 <h3>1，创建一个测试类</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4cb94f17-007e-4bf6-a2cf-fb0eb749f668"><img src="https://github.com/user-attachments/assets/4cb94f17-007e-4bf6-a2cf-fb0eb749f668" alt="Image" style="max-width: 100%;"></a><br>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4cb94f17-007e-4bf6-a2cf-fb0eb749f668"><img src="https://github.com/user-attachments/assets/4cb94f17-007e-4bf6-a2cf-fb0eb749f668" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 创建一个无参构造器的ArrayList，for循环10次向集合中添加数据</p>
 <h3>2，第一次添加数据，先将基本数据类型转换对应的包装类型，进入add方法</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c423965e-d3ae-4053-bdc9-d58a10a0ba12"><img src="https://github.com/user-attachments/assets/c423965e-d3ae-4053-bdc9-d58a10a0ba12" alt="Image" style="max-width: 100%;"></a><br>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c423965e-d3ae-4053-bdc9-d58a10a0ba12"><img src="https://github.com/user-attachments/assets/c423965e-d3ae-4053-bdc9-d58a10a0ba12" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 modCount记录执行add方法的次数；e表示要添加的元素；elementData表示对象数组，size表示数组的大小；<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d72574e1-2dae-4bec-b4e8-5d1d21915c66"><img src="https://github.com/user-attachments/assets/d72574e1-2dae-4bec-b4e8-5d1d21915c66" alt="Image" style="max-width: 100%;"></a></p>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d72574e1-2dae-4bec-b4e8-5d1d21915c66"><img src="https://github.com/user-attachments/assets/d72574e1-2dae-4bec-b4e8-5d1d21915c66" alt="Image" style="max-width: 100%; height: auto;"></a></p>
 <h3>3，进入add方法</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6c08e8e1-1178-48a1-9f1a-581188529236"><img src="https://github.com/user-attachments/assets/6c08e8e1-1178-48a1-9f1a-581188529236" alt="Image" style="max-width: 100%;"></a><br>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6c08e8e1-1178-48a1-9f1a-581188529236"><img src="https://github.com/user-attachments/assets/6c08e8e1-1178-48a1-9f1a-581188529236" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 先判断elelmentData和size是否相等，相等，执行grow方法<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f1e34e47-b41b-4f17-b983-a90f0b91d062"><img src="https://github.com/user-attachments/assets/f1e34e47-b41b-4f17-b983-a90f0b91d062" alt="Image" style="max-width: 100%;"></a><br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd"><img src="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd" alt="Image" style="max-width: 100%;"></a></p>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f1e34e47-b41b-4f17-b983-a90f0b91d062"><img src="https://github.com/user-attachments/assets/f1e34e47-b41b-4f17-b983-a90f0b91d062" alt="Image" style="max-width: 100%; height: auto;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd"><img src="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd" alt="Image" style="max-width: 100%; height: auto;"></a></p>
 <ol>
 <li>minCapacity为最小容量，大小为size加1；oldCapacity为实际容量，大小为elementData的大小</li>
 <li>在grow方法中，判断实际数组的容量是否大于0或者是否不为null，显然第一次是不满足，执行else方法</li>
@@ -195,17 +195,17 @@ modCount记录执行add方法的次数；e表示要添加的元素；elementData
 <li>由于elementData在第一次add时就初始化为10，所以在执行下面的9次add元素都不会执行grow方法，就是依此添加元素到数组</li>
 </ol>
 <h3>4，在上面的基础上我们在添加一次循环，观察第二次数组扩容的机制</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/41aed02e-66ba-4d1d-bdde-556e610bcddb"><img src="https://github.com/user-attachments/assets/41aed02e-66ba-4d1d-bdde-556e610bcddb" alt="Image" style="max-width: 100%;"></a><br>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/41aed02e-66ba-4d1d-bdde-556e610bcddb"><img src="https://github.com/user-attachments/assets/41aed02e-66ba-4d1d-bdde-556e610bcddb" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 添加数组10次后，数组的参数情况<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/eb71df08-4146-48c5-9ade-c08314b503e3"><img src="https://github.com/user-attachments/assets/eb71df08-4146-48c5-9ade-c08314b503e3" alt="Image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/eb71df08-4146-48c5-9ade-c08314b503e3"><img src="https://github.com/user-attachments/assets/eb71df08-4146-48c5-9ade-c08314b503e3" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 执行grow方法<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd"><img src="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd" alt="Image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd"><img src="https://github.com/user-attachments/assets/25b6936f-9dfa-4698-89b5-7e31e3a61dfd" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 1，更新minCapacity为11，oldCapacity为10<br>
 2，满足if条件，调用ArraysSupport.newLength方法，返回实际数组长度大小+增长量 给newCapaticy<br>
 增长量：在满足最小增长量(minCapacity-oldCapaticy)的情况下，使用推荐增长量(oldCapaticy / 2)<br>
 因此，数组的第二次扩容就是按照原来的1.5倍扩容<br>
 3，通过数组扩容将扩充elementData的大小为newCapaticy<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8aecb9a8-5c9c-4e6b-b913-f80e7fd0576c"><img src="https://github.com/user-attachments/assets/8aecb9a8-5c9c-4e6b-b913-f80e7fd0576c" alt="Image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8aecb9a8-5c9c-4e6b-b913-f80e7fd0576c"><img src="https://github.com/user-attachments/assets/8aecb9a8-5c9c-4e6b-b913-f80e7fd0576c" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 4，返回add方法，将元素添加到数组中数组的大小加一</p>
 <h3>5，可以通过ArrayList的有参构造器手动设置数组的大小，但是第二次扩容还是按原来的1.5倍扩容</h3></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>

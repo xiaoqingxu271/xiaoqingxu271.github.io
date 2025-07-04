@@ -194,7 +194,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><h1>垃圾回收器的组合情况</h1>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/377af26f-b7bf-4279-9701-ccbc2f61fdf1"><img src="https://github.com/user-attachments/assets/377af26f-b7bf-4279-9701-ccbc2f61fdf1" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/377af26f-b7bf-4279-9701-ccbc2f61fdf1"><img src="https://github.com/user-attachments/assets/377af26f-b7bf-4279-9701-ccbc2f61fdf1" alt="Image" style="max-width: 100%; height: auto;"></a></p>
 <h2>第一种组合serial和serialOld</h2>
 <p>Serial：是一种单线程串行回收年轻代的垃圾回收器<br>
 优点：单cpu处理器下的吞吐量非常高<br>
@@ -243,7 +243,7 @@ Region空间的大小为堆内存/2048，也可以通过虚拟机参数来指定
 6，部分堆对象超过了Region区大小的一半，会被直接放入老年代，这种老年代称为Humongous区，如果对象过大会横跨Region区<br>
 7，多次回收后，会出现多个Old老年代区，此时总堆占有率达到阈值(max为45%)，会执行Mixed GC 回收所有年轻代，部分老年代以及大对象区(Humongous)<br>
 8，Mixed GC：包括了初始标记，并发标记，最终标记，并发清理<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/fca4cdcb-043a-4292-8cdc-1c6028c3fc82"><img src="https://github.com/user-attachments/assets/fca4cdcb-043a-4292-8cdc-1c6028c3fc82" alt="Image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/fca4cdcb-043a-4292-8cdc-1c6028c3fc82"><img src="https://github.com/user-attachments/assets/fca4cdcb-043a-4292-8cdc-1c6028c3fc82" alt="Image" style="max-width: 100%; height: auto;"></a><br>
 9，如果清理过程中发现没有足够的Region区来转移对象，那么就会执行Full GC<br>
 优点：<br>
 1，对回收较大的堆内存，延迟可控(在年轻代回收和老年代回收时，根据最大暂停时间来选择回收部分区域，而不是全部回收)<br>
